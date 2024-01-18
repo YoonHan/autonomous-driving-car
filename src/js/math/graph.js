@@ -4,6 +4,15 @@ class Graph {
     this.segments = segments
   }
 
+  addPoint(point) {
+    // check if the same point exists
+    if (this.points.some((({ x, y }) => x === point.x && y === point.y))) {
+      return
+    }
+
+    this.points.push(point)
+  }
+
   draw(ctx) {
     /** Draw segments first */
     for (const seg of this.segments) {
