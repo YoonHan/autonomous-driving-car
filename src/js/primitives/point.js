@@ -4,6 +4,10 @@ class Point {
     this.y = y
   }
 
+  equals(point) {
+    return point.x === this.x && point.y === this.y
+  }
+
   draw(ctx, size = 18, color = 'black') {
     const rad = size / 2
 

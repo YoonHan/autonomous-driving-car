@@ -6,11 +6,15 @@ class Graph {
 
   addPoint(point) {
     // check if the same point exists
-    if (this.points.some((({ x, y }) => x === point.x && y === point.y))) {
+    if (this.containsPoint(point)) {
       return
     }
 
     this.points.push(point)
+  }
+
+  containsPoint(point) {
+    return this.points.find(p => p.equals(point))
   }
 
   draw(ctx) {
