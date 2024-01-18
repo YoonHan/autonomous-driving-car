@@ -11,6 +11,7 @@
   <canvas id="myCanvas"></canvas>
   <div id="controls">
     <button onclick="addRandomPoint()">Add Point</button>
+    <button onclick="addRandomSegment()">Add Segment</button>
   </div>
 
   <script src="js/math/graph.js"></script>
@@ -40,6 +41,16 @@
     function addRandomPoint() {
       const newPoint =  new Point(Math.random() * myCanvas.width, Math.random() * myCanvas.height)
       graph.addPoint(newPoint)
+      ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+      graph.draw(ctx)
+    }
+
+    function addRandomSegment() {
+      const index1 = Math.floor(Math.random() * graph.points.length)
+      const index2 = Math.floor(Math.random() * graph.points.length)
+      graph.addSegment(
+        new Segment(graph.points[index1], graph.points[index2])
+      )
       ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
       graph.draw(ctx)
     }
