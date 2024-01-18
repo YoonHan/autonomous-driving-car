@@ -6,9 +6,10 @@ class Point {
 
   draw(ctx, size = 18, color = 'black') {
     const rad = size / 2
+
     ctx.beginPath()
-    ctx.fillStyle = color;
-    ctx.arc(this.x, this.y, rad, 0, Math.PI * 2); // unit: rad
-    ctx.fill();
+    ctx.fillStyle = color
+    ctx.arc(this.x, this.y, rad, 0, Math.PI * 2) // unit: rad
+    ctx.fill()
   }
 }
