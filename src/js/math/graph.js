@@ -14,6 +14,10 @@ class Graph {
   }
 
   removePoint(point) {
+    const segs = this.getSegmentsWithPoint(point)
+    for (const seg of segs) {
+      this.removeSegment(seg)
+    }
     this.points = this.points.filter(p => !p.equals(point))
   }
 
@@ -32,6 +36,15 @@ class Graph {
 
   removeSegment(seg) {
     this.segments = this.segments.filter((s) => !s.equals(seg))
+  }
+
+  dispose() {
+    this.points = []
+    this.segments = []
+  }
+
+  getSegmentsWithPoint(point) {
+    return this.segments.filter(s => s.includes(point))
   }
 
   containsPoint(point) {
