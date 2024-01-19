@@ -17,8 +17,21 @@ class Graph {
     this.segments.push(seg)
   }
 
+  tryAddSegment(seg) {
+    if (!this.containsSegment(seg)) {
+      this.addSegment(seg)
+      return true
+    }
+
+    return false
+  }
+
   containsPoint(point) {
     return this.points.find(p => p.equals(point))
+  }
+
+  containsSegment(seg) {
+    return this.segments.find((s) => s.equals(seg))
   }
 
   draw(ctx) {
