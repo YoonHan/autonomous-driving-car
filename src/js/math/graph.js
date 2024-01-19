@@ -18,12 +18,16 @@ class Graph {
   }
 
   tryAddSegment(seg) {
-    if (!this.containsSegment(seg)) {
+    if (!this.containsSegment(seg) && !seg.p1.equals(seg.p2)) {
       this.addSegment(seg)
       return true
     }
 
     return false
+  }
+
+  removeSegment(seg) {
+    this.segments = this.segments.filter((s) => !s.equals(seg))
   }
 
   containsPoint(point) {
