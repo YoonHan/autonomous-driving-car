@@ -13,6 +13,10 @@ class Graph {
     this.points.push(point)
   }
 
+  removePoint(point) {
+    this.points = this.points.filter(p => !p.equals(point))
+  }
+
   addSegment(seg) {
     this.segments.push(seg)
   }
