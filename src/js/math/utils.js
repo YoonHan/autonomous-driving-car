@@ -1,0 +1,16 @@
+function getNearestPoint(selectedPoint, points, threshold = Number.MAX_SAFE_INTEGER) {
+  let nearest = null
+
+  points.forEach((p) => {
+    const d = distance(p, selectedPoint)
+    if (d < threshold) {
+      nearest = p
+    }
+  })
+
+  return nearest
+}
+
+function distance(p1, p2) {
+  return Math.hypot(p1.x - p2.x, p1.y - p2.y)
+}
