@@ -18,6 +18,7 @@
   </div>
 
   <script src="js/math/graph.js"></script>
+  <script src="js/graph-editor.js"></script>
   <script src="js/primitives/point.js"></script>
   <script src="js/primitives/segment.js"></script>
   <script src="js/handlers.js"></script>
@@ -39,61 +40,7 @@
     const s4 = new Segment(p2, p3)
 
     const graph = new Graph([p1, p2, p3, p4], [s1, s2, s3, s4])
-    graph.draw(ctx)
-
-    function redraw() {
-      ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
-      graph.draw(ctx)
-    }
-
-    function addRandomPoint() {
-      const newPoint =  new Point(Math.random() * myCanvas.width, Math.random() * myCanvas.height)
-      graph.addPoint(newPoint)
-      redraw()
-    }
-
-    function addRandomSegment() {
-      const index1 = Math.floor(Math.random() * graph.points.length)
-      const index2 = Math.floor(Math.random() * graph.points.length)
-
-      let success
-      if (index1 !== index2) {
-        success = graph.tryAddSegment(
-          new Segment(graph.points[index1], graph.points[index2])
-        )
-      }
-      
-      redraw()
-    }
-
-    function removeRandomPoint() {
-      if (graph.points.length === 0) {
-        return
-      }
-
-      const index = Math.floor(Math.random() * graph.points.length)
-      graph.removePoint(graph.points[index])
-
-      redraw()
-    }
-
-    function removeRandomSegment() {
-      if (graph.segments.length === 0) {
-        return
-      }
-
-      const index = Math.floor(Math.random() * graph.segments.length)
-      graph.removeSegment(graph.segments[index])
-
-      redraw()
-    }
-
-    function removeAll() {
-      graph.dispose()
-
-      redraw()
-    }
-
+    const graphEditor = new GraphEditor(myCanvas, graph)
   </script>
 </body>
 </html>

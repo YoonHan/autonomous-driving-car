@@ -1,0 +1,3 @@
+class GraphEditor {
+  constructor() { }
+}
