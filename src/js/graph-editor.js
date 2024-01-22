@@ -6,6 +6,7 @@ class GraphEditor {
     this.graph = graph
     this.selectedPoint = null
     this.hoveredPoint = null
+    this.isDragging = false
 
     this.ctx = this.canvas.getContext('2d')
 
@@ -13,6 +14,10 @@ class GraphEditor {
   }
 
   #addEventListeners() {
+    this.canvas.addEventListener('mouseup', () => {
+      this.isDragging = false
+    })
+
     this.canvas.addEventListener('mousedown', ($event) => {
       const { offsetX, offsetY, button } = $event
       const clickedPoint = new Point(offsetX, offsetY)
@@ -27,6 +32,7 @@ class GraphEditor {
       if (button === MOUSE_EVENT_LEFT_BUTTON_CODE) {
         if (this.hoveredPoint) {
           this.selectedPoint = this.hoveredPoint
+          this.isDragging = true
           return
         }
 
@@ -42,6 +48,11 @@ class GraphEditor {
       const currentPoint = new Point(offsetX, offsetY)
 
       this.hoveredPoint = getNearestPoint(currentPoint, this.graph.points, 20)
+
+      if (this.isDragging) {
+        this.selectedPoint.x = offsetX
+        this.selectedPoint.y = offsetY
+      }
     })
 
     this.canvas.addEventListener('contextmenu', ($event) => {
