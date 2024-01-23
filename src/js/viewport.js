@@ -2,10 +2,16 @@ class Viewport {
   constructor(canvas) {
     this.canvas = canvas
     this.ctx = canvas.getContext('2d')
-
     this.zoom = 1
 
     this.#addEventListeners()
+  }
+
+  getMouse($event) {
+    return new Point(
+      $event.offsetX * this.zoom,
+      $event.offsetY * this.zoom
+    )
   }
 
   #addEventListeners() {

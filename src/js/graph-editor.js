@@ -1,8 +1,9 @@
 const MOUSE_EVENT_LEFT_BUTTON_CODE = 0
 const MOUSE_EVENT_RIGHT_BUTTON_CODE = 2
 class GraphEditor {
-  constructor(canvas, graph) {
-    this.canvas = canvas
+  constructor(viewport, graph) {
+    this.viewport = viewport
+    this.canvas = viewport.canvas
     this.graph = graph
     this.selectedPoint = null
     this.hoveredPoint = null
@@ -50,8 +51,7 @@ class GraphEditor {
   }
 
   #handleMouseMove($event) {
-    const { offsetX, offsetY } = $event
-    this.currentPoint = new Point(offsetX, offsetY)
+    this.currentPoint = this.viewport.getMouse($event)
     this.hoveredPoint = getNearestPoint(this.currentPoint, this.graph.points, 20)
 
     if (this.isDragging) {
