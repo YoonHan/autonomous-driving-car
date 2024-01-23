@@ -21,6 +21,8 @@ class GraphEditor {
     this.canvas.addEventListener('contextmenu', ($event) => {
       $event.preventDefault()
     })
+
+    window.addEventListener('keydown', this.#handleKeyDown.bind(this))
   }
 
   #handleMouseUp() {
@@ -55,6 +57,12 @@ class GraphEditor {
     if (this.isDragging) {
       this.selectedPoint.x = this.currentPoint.x
       this.selectedPoint.y = this.currentPoint.y
+    }
+  }
+
+  #handleKeyDown($event) {
+    if ($event.code === 'Escape') {
+      this.selectedPoint = null
     }
   }
 
