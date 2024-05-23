@@ -5,14 +5,11 @@ class Graph {
   }
 
   static load(info) {
-    const points = []
-    const segments = []
-    for (const pointInfo of info.points) {
-      points.push(new Point(pointInfo.x, pointInfo.y))
-    }
-    for (const segmentInfo of info.segments) {
-      segments.push(new Segment(segmentInfo.p1, segmentInfo.p2))
-    }
+    const points = info.points.map((p) => new Point(p.x, p.y))
+    const segments = info.segments.map((s) => new Segment(
+      points.find((p) => p.equals(s.p1)),
+      points.find((p) => p.equals(s.p2)),
+    ))
     return new Graph(points, segments)
   }
 
