@@ -4,6 +4,18 @@ class Graph {
     this.segments = segments
   }
 
+  static load(info) {
+    const points = []
+    const segments = []
+    for (const pointInfo of info.points) {
+      points.push(new Point(pointInfo.x, pointInfo.y))
+    }
+    for (const segmentInfo of info.segments) {
+      segments.push(new Segment(segmentInfo.p1, segmentInfo.p2))
+    }
+    return new Graph(points, segments)
+  }
+
   addPoint(point) {
     // check if the same point exists
     if (this.containsPoint(point)) {
