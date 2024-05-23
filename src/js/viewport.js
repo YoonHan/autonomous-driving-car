@@ -11,6 +11,15 @@ class Viewport {
     this.#addEventListeners()
   }
 
+  reset() {
+    this.ctx.restore()
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.ctx.save()
+    this.ctx.scale(1 / this.zoom, 1 / this.zoom)
+    const offset = this.getOffset()
+    this.ctx.translate(offset.x, offset.y)
+  }
+
   getMouse($event) {
     return new Point(
       $event.offsetX * this.zoom,
